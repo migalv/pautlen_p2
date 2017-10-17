@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "tablaSimbolos.h"
+
 #define MAX_LENGTH 120
 #define TAM_TABLES 100
 
@@ -59,15 +61,18 @@ int main(int argc, char *argv[]){
 			cerrar_ambito(ts);
 			fprintf(salida, "cierre\n");
 		} else if (idNotUsed == 1){
-			printf("%s\t%d\n", lexema, buscar_identificador(ts, lexema));
+			fprintf(salida, "%s\t%d\n", lexema, buscar_identificador(ts, lexema));
 		} else if (idNotUsed == 0 && id >= 0){
 			if(declarar_variable(ts, lexema, ENTERO, ESCALAR, id, 0) == ERR)
-				printf("-1\t%s\n", lexema);
+				fprintf(salida, "-1\t%s\n", lexema);
 			else
-				printf("%s\n", lexema);
-		} else if ()
-
-
+				fprintf(salida, "%s\n", lexema);
+		} else if (idNotUsed == 0 && id < 0){
+			if(declarar_funcion(ts, lexema, ENTERO, ESCALAR, id, 0) == ERR)
+				fprintf(salida, "-1\t%s\n", lexema);
+			else
+				fprintf(salida, "%s\n", lexema);
+		}
 	}
 
 	fclose(entrada);

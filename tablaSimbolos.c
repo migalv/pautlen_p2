@@ -5,7 +5,6 @@
  */
 
 #include <stdio.h>
-#include "tablaHash.h"
 #include "tablaSimbolos.h"
 
 struct _TablaSimbolos{            
