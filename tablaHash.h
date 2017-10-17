@@ -38,6 +38,7 @@ typedef struct {
     CATEGORIA categoria;    /* categoría */    
     TIPO tipo;              /* tipo */
     CLASE clase;            /* clase */
+    int id;				/* id del elemento */
     int adicional1;    /* valor si escalar, longitud si vector, número de parámetros si función */
     int adicional2;    /* posición en llamada a función si parámetro, posición de declaración si variable local de función, número de variables locales si función */
 } INFO_SIMBOLO;

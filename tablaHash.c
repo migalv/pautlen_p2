@@ -23,7 +23,7 @@
  * Salida:
  *      INFO_SIMBOLO *: puntero a la estructura reservada, NULL si se produce algún error.
  */
-INFO_SIMBOLO *crear_info_simbolo(const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int adic1, int adic2) {
+INFO_SIMBOLO *crear_info_simbolo(const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int id, int adic1, int adic2) {
     INFO_SIMBOLO *is;
 
     if ((is = (INFO_SIMBOLO *) malloc(sizeof(INFO_SIMBOLO)))) {
@@ -35,6 +35,7 @@ INFO_SIMBOLO *crear_info_simbolo(const char *lexema, CATEGORIA categ, TIPO tipo,
         is->categoria = categ;
         is->tipo = tipo;
         is->clase = clase;
+        is->id = id;
         is->adicional1 = adic1;
         is->adicional2 = adic2;
     }
@@ -211,7 +212,7 @@ INFO_SIMBOLO *buscar_simbolo(const TABLA_HASH *th, const char *lexema) {
  * Salida: 
  *      STATUS: OK si se inserta correctamente, ERR si no (por ya existir o por memoria insuficiente).
  */
-STATUS insertar_simbolo(TABLA_HASH *th, const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int adic1, int adic2) {
+STATUS insertar_simbolo(TABLA_HASH *th, const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int id, int adic1, int adic2) {
     int ind;
     INFO_SIMBOLO *is;    
     NODO_HASH *n = NULL;
@@ -223,7 +224,7 @@ STATUS insertar_simbolo(TABLA_HASH *th, const char *lexema, CATEGORIA categ, TIP
     /* Calcular posición */
     ind = hash(lexema) % th->tam;
     /* Reservar nodo e info del nodo */
-    if (!(is = crear_info_simbolo(lexema, categ, tipo, clase, adic1, adic2))) {
+    if (!(is = crear_info_simbolo(lexema, categ, tipo, clase, id, adic1, adic2))) {
         return ERR;
     }
     if (!(n = crear_nodo(is))) {
