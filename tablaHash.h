@@ -58,7 +58,7 @@ typedef struct {
 
 /**************** FUNCIONES ****************/
 
-INFO_SIMBOLO *crear_info_simbolo(const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int adic1, int adic2);
+INFO_SIMBOLO *crear_info_simbolo(const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int id, int adic1, int adic2);
 void liberar_info_simbolo(INFO_SIMBOLO *is);
 NODO_HASH *crear_nodo(INFO_SIMBOLO *is);
 void liberar_nodo(NODO_HASH *nh);
@@ -66,7 +66,7 @@ TABLA_HASH *crear_tabla(int tam);
 void liberar_tabla(TABLA_HASH *th);
 unsigned long hash(const char *str);
 INFO_SIMBOLO *buscar_simbolo(const TABLA_HASH *th, const char *lexema);
-STATUS insertar_simbolo(TABLA_HASH *th, const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int adic1, int adic2);
+STATUS insertar_simbolo(TABLA_HASH *th, const char *lexema, CATEGORIA categ, TIPO tipo, CLASE clase, int id, int adic1, int adic2);
 void borrar_simbolo(TABLA_HASH *th, const char *lexema);
 
 #endif  /* TABLAHASH_H */

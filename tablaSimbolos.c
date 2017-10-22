@@ -5,6 +5,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "tablaSimbolos.h"
 
 struct _TablaSimbolos{            
@@ -19,27 +20,28 @@ TABLA_SIMBOLOS *crear_tabla_simbolos(int tam){
 
 	if(tam < 1) return NULL;
 
-	if ((ts = (TABLA_SIMBOLOS *) malloc(sizeof(TABLA_SIMBOLOS)))){
-		return ts;
+	ts = (TABLA_SIMBOLOS *) malloc(sizeof(TABLA_SIMBOLOS));
+	if(!ts){
+		return NULL;
 	}
 
 	if((ts->global = crear_tabla(tam)) == NULL){
 		free(ts);
 		return NULL;
 	}
-
+	
 	ts->local = NULL;
 	ts->tamano = tam;
 	return ts;
 }
 
 void destruir_tabla_simbolos(TABLA_SIMBOLOS * ts){
-	if(!ts) return ERR;
+	if(!ts) return;
 	if(ts->local != NULL){
 		liberar_tabla(ts->local);
 	}
 
-	liberar_tabla(ts->tglobal);
+	liberar_tabla(ts->global);
 
 	free(ts);
 }

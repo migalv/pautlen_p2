@@ -27,8 +27,11 @@ INFO_SIMBOLO *crear_info_simbolo(const char *lexema, CATEGORIA categ, TIPO tipo,
     INFO_SIMBOLO *is;
 
     if ((is = (INFO_SIMBOLO *) malloc(sizeof(INFO_SIMBOLO)))) {
+        is->lexema = (char *)malloc(strlen (lexema) + 1); 
+        if((is->lexema) == NULL) return NULL;       
+        strcpy(is->lexema, lexema);
         /* Duplicar lexema */
-        if (!(is->lexema = strdup(lexema))) {
+        if (!(is->lexema)) {
             free(is);
             return NULL;
         }

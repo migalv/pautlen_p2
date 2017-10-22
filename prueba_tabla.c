@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "tablaSimbolos.h"
 
@@ -44,12 +45,12 @@ int main(int argc, char *argv[]){
 	}
 
 	while(fgets(line, MAX_LENGTH, entrada) != NULL){
-		printf("%s", line);
+		printf("%s\n", line);
 
 		token = strtok(line, "\t");
 		lexema = token;
 		token = strtok(NULL, "\t");
-		if(token != NULL){
+		if(token != NULL){;
 			id = atoi(token);
 			idNotUsed = 0;
 		}
