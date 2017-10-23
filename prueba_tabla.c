@@ -45,20 +45,19 @@ int main(int argc, char *argv[]){
 	}
 
 	while(fgets(line, MAX_LENGTH, entrada) != NULL){
-		printf("%s\n", line);
+		
 
-		token = strtok(line, "\t");
-		lexema = token;
-		token = strtok(NULL, "\t");
-		if(token != NULL){;
+		if(strstr(line, " ") != NULL){
+			lexema = strtok(line, " ");
+			token = strtok(NULL, "\n");
 			id = atoi(token);
 			idNotUsed = 0;
 		}
 		else{
+			lexema = strtok(line, "\n");
 			idNotUsed = 1;
 		}
-
-		if(strcmp(lexema, "cierre") && idNotUsed == 0 && id == -999){
+		if(!strcmp(lexema, "cierre") && id == -999){
 			cerrar_ambito(ts);
 			fprintf(salida, "cierre\n");
 		} else if (idNotUsed == 1){
@@ -76,6 +75,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 
+	destruir_tabla_simbolos(ts);
 	fclose(entrada);
 	fclose(salida);
 

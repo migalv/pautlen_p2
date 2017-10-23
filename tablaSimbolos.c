@@ -71,6 +71,10 @@ STATUS declarar_funcion(TABLA_SIMBOLOS * ts, char * lexema, TIPO tipo, CLASE cla
 		liberar_tabla(ts->local);
 		return ERR;
 	}
+	else if(insertar_simbolo(ts->local, lexema, FUNCION, tipo, clase, id, param_extra, 0) == ERR){
+		liberar_tabla(ts->local);
+		return ERR;
+	}
 	return OK;
 }
 
@@ -86,14 +90,16 @@ STATUS declarar_parametro(TABLA_SIMBOLOS * ts, char * lexema, TIPO tipo, CLASE c
 
 int buscar_identificador(TABLA_SIMBOLOS *ts, char * lexema){
 	INFO_SIMBOLO *simbolo = NULL;
-	if(!lexema || !ts) return -1;
+	if(lexema == NULL || ts == NULL) return -1;
 
 	if((simbolo = buscar_simbolo(ts->local, lexema)) != NULL)
 		return simbolo->id;
 	else if((simbolo = buscar_simbolo(ts->global, lexema)) != NULL)
 		return simbolo->id;
-	else
+	else{
+
 		return -1;
+	}
 
 	return -1;
 }

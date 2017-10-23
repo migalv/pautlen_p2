@@ -1,11 +1,11 @@
 # generation flags
-CC = gcc -ansi -pedantic
+CC = gcc -ansi -pedantic -g
 CFLAGS = -Wall
 
 all: prueba_tabla
 
 clean:
-	rm *.o prueba_tabla *.out
+	rm *.o prueba_tabla
 
 prueba_tabla: prueba_tabla.o tablaHash.o tablaSimbolos.o tablaSimbolos.h tablaHash.h
 	$(CC) $(CFLAGS) -o $@ $@.o tablaHash.o tablaSimbolos.o

@@ -153,6 +153,7 @@ void liberar_tabla(TABLA_HASH *th) {
             free(th->tabla);
         }
         free(th);
+        th = NULL;
     }
 }
 
@@ -188,7 +189,11 @@ unsigned long hash(const char *str) {
 INFO_SIMBOLO *buscar_simbolo(const TABLA_HASH *th, const char *lexema) {
     unsigned int ind;    
     NODO_HASH *n;
-        
+    
+    if(th == NULL || lexema == NULL){
+        return NULL;
+    }
+
     /* Calcular posición */
     ind = hash(lexema) % th->tam;
     /* Buscar en lista enlazada */

@@ -1,13 +1,16 @@
 primero
+primero	1
 funcion
 primero
 segundo
 tercero
+primero	10
+segundo	20
 cuarto
 quinto
 -1	primero
 -1	segundo
 -1	tercero
 -1	cuarto
-funcion
--1	cierre
+-1	funcion
+cierre
